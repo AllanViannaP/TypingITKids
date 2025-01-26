@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    // Word Bank
+    public WordBank wordBank = null; // The WordBank script
     public Text wordOut = null; // The UI element to display the word
     private string currentWord = string.Empty;
     private string remainingWord = string.Empty;
@@ -19,7 +19,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void SetCurrentWord()
     {
         // Get word from word bank
-        currentWord = "hello";
+        currentWord = wordBank.GetWord();
         typedWord = string.Empty;
         SetRemainingWord(currentWord);
     }
