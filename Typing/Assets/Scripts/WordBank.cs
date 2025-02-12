@@ -1,22 +1,32 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-
 
 public class WordBank : MonoBehaviour
 {
-    private List<string> setWords = new List<string>
-    {
-        "test","words","here","hello","world","unity","game","development","programming"
-    };
+    public DB db = null; // Ensure this is assigned in the Inspector
 
+    private List<string> setWords = new List<string>();
     private List<string> nowWords = new List<string>();
 
     private void Awake()
     {
-        nowWords.AddRange(setWords);
-        Shuffle(nowWords);
-        LowerCase(nowWords);
+        StartCoroutine(SetWords(1)); // Call the function as a Coroutine
+    }
+
+    private IEnumerator SetWords(int deckId)
+    {
+        yield return StartCoroutine(db.FetchWords(words =>
+        {
+            foreach (string word in words)
+            {
+                setWords.Add(word);
+            }
+
+            nowWords.AddRange(setWords);
+            Shuffle(nowWords);
+            LowerCase(nowWords);
+        }));
     }
 
     private void Shuffle(List<string> list)
@@ -44,10 +54,10 @@ public class WordBank : MonoBehaviour
 
         if (nowWords.Count != 0)
         {
-            newWord = nowWords.Last();
-            nowWords.Remove(newWord);
+            newWord = nowWords[nowWords.Count - 1];
+            nowWords.RemoveAt(nowWords.Count - 1);
         }
 
-         return newWord;
+        return newWord;
     }
 }
