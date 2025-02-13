@@ -630,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 5361828764285605431}
     - target: {fileID: 293887463543668428, guid: 7c737bcf96e73964f9cb2f6dd2842600, type: 3}
       propertyPath: deckId
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1072172818278256761, guid: 7c737bcf96e73964f9cb2f6dd2842600, type: 3}
       propertyPath: m_LocalPosition.x
