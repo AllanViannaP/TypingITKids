@@ -1,6 +1,11 @@
 <?php
     // This file is used to register a new user to the database
-    $con = mysqli_connect("localhost", "root", "", "typer");
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "typer";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Check connection
     if(mysqli_connect_errno()){

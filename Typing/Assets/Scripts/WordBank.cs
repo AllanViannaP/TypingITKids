@@ -5,19 +5,26 @@ using UnityEngine;
 public class WordBank : MonoBehaviour
 {
     public DB db = null; // Ensure this is assigned in the Inspector
+    public int deckId = 1; // Set the deck ID to fetch words for the specific deck 
 
     private List<string> setWords = new List<string>();
     private List<string> nowWords = new List<string>();
 
     private void Awake()
     {
-        StartCoroutine(SetWords(1)); // Call the function as a Coroutine
+        StartCoroutine(SetWords()); // Call the function as a Coroutine
     }
 
-    private IEnumerator SetWords(int deckId)
+    private IEnumerator SetWords()
     {
-        yield return StartCoroutine(db.FetchWords(words =>
+       yield return StartCoroutine(db.FetchWords(deckId, words =>
         {
+            if (words.Length == 0)
+            {
+                Debug.LogError("No words were returned from the database.");
+                return;
+            }
+
             foreach (string word in words)
             {
                 setWords.Add(word);
@@ -27,6 +34,7 @@ public class WordBank : MonoBehaviour
             Shuffle(nowWords);
             LowerCase(nowWords);
         }));
+
     }
 
     private void Shuffle(List<string> list)

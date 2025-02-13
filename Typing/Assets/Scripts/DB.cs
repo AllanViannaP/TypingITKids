@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 [System.Serializable]
 public class WordList
@@ -11,14 +10,41 @@ public class WordList
 
 public class DB : MonoBehaviour
 {
-    // public InputField NickField;
-    // public InputField passwordField;
-    // public InputField emailField;
+    private string[] retrievedWords; // Stores the retrieved words
 
-    // Stores the retrieved words
-    private string[] retrievedWords;
+    // Function to fetch words from the database using the deck ID
+    public IEnumerator FetchWords(int deckId, System.Action<string[]> callback)
+    {
+        string url = "http://localhost/typer/get_words.php?id_deck=" + deckId; // URL with the deck ID parameter
 
-    // Function to register a new user
+        using UnityWebRequest request = UnityWebRequest.Get(url); // Using GET since we are passing parameters in the URL
+        yield return request.SendWebRequest(); // Sends the request and waits for the response
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string jsonResponse = request.downloadHandler.text; // Get the JSON response from the server
+            WordList wordList = JsonUtility.FromJson<WordList>(jsonResponse); // Convert the JSON response into a WordList object
+
+            // Check if the response is not null or empty before passing it to the callback
+            if (wordList != null && wordList.words != null && wordList.words.Length > 0)
+            {
+                retrievedWords = wordList.words; // Store the retrieved words
+                callback(retrievedWords); // Pass the words to the callback
+            }
+            else
+            {
+                Debug.LogError("No words returned or malformed response."); // In case the response is invalid
+                callback(new string[0]); // Return an empty array in case of error
+            }
+        }
+        else
+        {
+            Debug.LogError("Request error: " + request.error); // Log the error if the request fails
+            callback(new string[0]); // Return an empty array in case of error
+        }
+    }
+
+    // Function to register a new user (commented for now)
     /*public IEnumerator RegisterUser()
     {
         WWWForm form = new();
@@ -47,39 +73,27 @@ public class DB : MonoBehaviour
                 Debug.Log("Request failed: " + www.error);
             }
         }
-    }
-    */
-
-    // Function to fetch words from the database
-    public IEnumerator FetchWords(System.Action<string[]> callback)
-    {
-        using UnityWebRequest request = UnityWebRequest.Get("http://localhost/typer/get_words.php");
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string jsonResponse = request.downloadHandler.text;
-            WordList wordList = JsonUtility.FromJson<WordList>(jsonResponse);
-            retrievedWords = wordList.words;
-            callback(retrievedWords);
-        }
-        else
-        {
-            Debug.Log("Request failed: " + request.error);
-            callback(new string[0]); // Return an empty array on error
-        }
-    }
+    }*/
 
     private void Start()
     {
-        StartCoroutine(FetchWords(HandleWords));
+        int deckId = 1; // Example: Replace with the actual deck ID you want to fetch
+        StartCoroutine(FetchWords(deckId, HandleWords)); // Start fetching the words
     }
 
     private void HandleWords(string[] words)
     {
-        foreach (string word in words)
+        // Check if the word array is not null or empty before accessing it
+        if (words != null && words.Length > 0)
         {
-            Debug.Log("Received word: " + word);
+            foreach (string word in words)
+            {
+                Debug.Log("Received word: " + word); // Log each received word
+            }
+        }
+        else
+        {
+            Debug.LogError("No words received."); // If no words were received
         }
     }
 
