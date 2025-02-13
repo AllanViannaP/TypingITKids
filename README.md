@@ -49,7 +49,7 @@ To run this project, you will need the following:
 3. **Import the Database Schema**:
    - After creating the database, click on the newly created `typer` database.
    - Go to the "Import" tab in the top menu.
-   - Click on "Choose File" and select the `.sql` file (provided with the project or created separately) that contains the schema for the `words` and `wordlist` tables.
+   - Click on "Choose File" and select the `typer.sql` file (in SQL folder).
    - Click "Go" to import the schema and create the necessary tables.
 
 ### Step 4: Configure PHP to Use Your Database Credentials
