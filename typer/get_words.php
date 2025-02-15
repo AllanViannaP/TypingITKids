@@ -3,19 +3,7 @@
 header("Content-Type: application/json");
 
 // Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "typer";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    // If connection fails, return error message
-    die(json_encode(["error" => "Database connection failed"]));
-}
+include 'config.php';
 
 // Check if deck_id is passed in the request
 if (!isset($_GET["id_deck"])) {
