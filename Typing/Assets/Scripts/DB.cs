@@ -44,37 +44,6 @@ public class DB : MonoBehaviour
         }
     }
 
-    // Function to register a new user (commented for now)
-    /*public IEnumerator RegisterUser()
-    {
-        WWWForm form = new();
-        form.AddField("nick", NickField.text);
-        form.AddField("password", passwordField.text);
-        form.AddField("email", emailField.text);
-
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/typer/register.php", form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                if (www.downloadHandler.text == "0")
-                {
-                    Debug.Log("User created successfully.");
-                    // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-                }
-                else
-                {
-                    Debug.Log("User creation failed. Error #" + www.downloadHandler.text);
-                }
-            }
-            else
-            {
-                Debug.Log("Request failed: " + www.error);
-            }
-        }
-    }*/
-
     private void Start()
     {
         int deckId = 1; // Example: Replace with the actual deck ID you want to fetch
