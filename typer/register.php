@@ -1,17 +1,6 @@
 <?php
     // This file is used to register a new user to the database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "typer";
-    
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if(mysqli_connect_errno()){
-        echo "1: Failed to connect to MySQL: " . mysqli_connect_error(); // Error code #1 = failed to connect to MySQL
-        exit();
-    }
+    include 'config.php';
 
     // Get the data from the form
     $nick = $_POST["nick"];
