@@ -413,7 +413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 270, y: -124}
+  m_AnchoredPosition: {x: 271, y: -123}
   m_SizeDelta: {x: 1018.7433, y: 233.2001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &290259732
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3ab641dba8a9c4ba2292d2975ad20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetMultiplier: -2.5
+  offsetMultiplier: -8
   smoothTime: 0.3
 --- !u!1 &311116523
 GameObject:
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3ab641dba8a9c4ba2292d2975ad20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetMultiplier: -5
+  offsetMultiplier: -50
   smoothTime: 0.1
 --- !u!1 &582386877
 GameObject:
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3ab641dba8a9c4ba2292d2975ad20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetMultiplier: -0.5
+  offsetMultiplier: -2
   smoothTime: 0.3
 --- !u!1 &668212031
 GameObject:
@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3ab641dba8a9c4ba2292d2975ad20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetMultiplier: -1
+  offsetMultiplier: -4
   smoothTime: 0.3
 --- !u!1 &1089063278
 GameObject:
@@ -3309,7 +3309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3ab641dba8a9c4ba2292d2975ad20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetMultiplier: -5
+  offsetMultiplier: -50
   smoothTime: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
