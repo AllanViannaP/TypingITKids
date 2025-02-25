@@ -10,6 +10,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private string remainingWord = string.Empty;
     private string typedWord = string.Empty;
 
+    public Hero hero = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -65,6 +66,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             AddTypedLetter();
             if (WordComplete())
             {
+                hero.Hit();
                 SetCurrentWord();
             }
         }

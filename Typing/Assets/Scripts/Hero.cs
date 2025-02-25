@@ -15,6 +15,6 @@ public class Hero : MonoBehaviour
     }
 
     public void Hit(){
-        
+        Debug.Log("Hero was hit!");
     }
 }
